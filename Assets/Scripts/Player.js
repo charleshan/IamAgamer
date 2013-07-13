@@ -4,6 +4,7 @@ var velocity: float;
 var movementSpeed: float = 5;
 var isGrounded: boolean = false;
 var jumpVelocity: Vector3;
+static var distanceTraveled: float;
 
 function Start () {
     
@@ -17,6 +18,7 @@ function Update () {
         rigidbody.AddForce(jumpVelocity, ForceMode.VelocityChange);
         isGrounded = false;
     }
+    distanceTraveled = transform.localPosition.z;
 }
 
 function FixedUpdate()
