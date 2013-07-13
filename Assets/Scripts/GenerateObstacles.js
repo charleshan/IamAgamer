@@ -3,9 +3,12 @@
 public var obstacle:Transform;
 var timer:float = 1;
 
+var usedObjectQueue = new Queue();
+var newObjectQueue = new Queue();
+var recycleOffset = 30;
 
 function Start () {
-
+	
 }
 
 function Update () 
@@ -19,8 +22,29 @@ function Update ()
 	if(timer <= 0)
 	{
 		var newObs:Transform;
-		newObs = Instantiate (obstacle, Vector3(Random.Range(-9,9), 1, travelled+10), Quaternion.identity);
+		if(newObjectQueue.Count == 0)
+		{
+			newObs = Instantiate (obstacle, Vector3(Random.Range(-9,9), 1, travelled+30), Quaternion.identity);
+		}
+		else
+		{
+			newObs = newObjectQueue.Dequeue();
+			newObs.transform.position.x = Random.Range(-9,9);
+			newObs.transform.position.z = travelled+30;
+		}
 		timer = 1;
+		usedObjectQueue.Enqueue(newObs);
+	}
+	
+	if(usedObjectQueue.Count > 0)
+	{
+		var firstObs:Transform = usedObjectQueue.Peek();
+	
+		if(firstObs.position.x + recycleOffset < travelled)
+		{
+			usedObjectQueue.Dequeue();
+			newObjectQueue.Enqueue(firstObs);
+		}
 	}
 }
 
