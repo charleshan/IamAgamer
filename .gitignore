@@ -1,23 +1,33 @@
-     ##################
-    # Unity ignores:
-    #
-    # !!! WARNING !!!
-    #
-    # … you MUST convert Unity to using Metafiles *before* you start using this .gitignore file,
-    # or you WILL lose data!
-    #
-
-    # OS X only (not needed on other platforms)
-    .DS_Store
-    *.swp
-    *.Trashes
-
-    # All platforms
-    Library
-    Temp
-    *.csproj
-    *.pidb
-    *.unityproj
-    *.sln
-    *.suo
-    *.userprefs 
+# =============== #
+# Unity generated #
+# =============== #
+Temp/
+Obj/
+UnityGenerated/
+Library/
+ 
+# ===================================== #
+# Visual Studio / MonoDevelop generated #
+# ===================================== #
+ExportedObj/
+*.svd
+*.userprefs
+*.csproj
+*.pidb
+*.suo
+*.sln
+*.user
+*.unityproj
+*.booproj
+ 
+# ============ #
+# OS generated #
+# ============ #
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+Icon?
+ehthumbs.db
+Thumbs.db
