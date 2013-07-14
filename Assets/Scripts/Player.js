@@ -1,6 +1,6 @@
 #pragma strict
 
-var velocity: float = 20;
+var velocity: float = 5;
 var movementSpeed: float = 5;
 var isGrounded: boolean = false;
 var jumpVelocity: Vector3;
@@ -16,10 +16,10 @@ function Start () {
 
 function Update () {
     transform.Translate(Input.GetAxis("Vertical") * Time.deltaTime * movementSpeed, 0, 0);
-
+    /*
     var amtToMove = velocity * Time.deltaTime;
     transform.Translate(-Vector3.forward * amtToMove);
-
+    */
     if (Input.GetButtonDown("Jump") && transform.position.y < 1.1)
     {
         rigidbody.AddForce(jumpVelocity, ForceMode.VelocityChange);
@@ -39,17 +39,17 @@ function Update () {
 	    timer = 2;
 	    previousDistance = transform.position.z;
     }
-    
+    /*
     if (distanceTraveled > distanceLast + 100) {
     	velocity += 5;
     	distanceLast = distanceTraveled;       
-    }
+    }*/
     
 }
 
 function FixedUpdate()
 {
-    //rigidbody.AddForce(0, 0, velocity);
+    rigidbody.AddForce(0, 0, velocity);
 }
 
 function OnCollisionEnter(otherObject: Collision)
