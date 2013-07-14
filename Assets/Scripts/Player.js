@@ -1,9 +1,10 @@
 #pragma strict
 
-var velocity: float;
+var velocity: float = 20;
 var movementSpeed: float = 5;
 var isGrounded: boolean = false;
 var jumpVelocity: Vector3;
+var distanceLast: float = 0;
 static var distanceTraveled: float;
 
 var timer:float = 0.5;
@@ -37,7 +38,13 @@ function Update () {
 	    }
 	    timer = 2;
 	    previousDistance = transform.position.z;
-    }       
+    }
+    
+    if (distanceTraveled > distanceLast + 100) {
+    	velocity *= 1.20;
+    	distanceLast = distanceTraveled;       
+    }
+    
 }
 
 function FixedUpdate()
