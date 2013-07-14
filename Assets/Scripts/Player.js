@@ -41,7 +41,7 @@ function Update () {
     }
     
     if (distanceTraveled > distanceLast + 100) {
-    	velocity *= 1.20;
+    	velocity += 5;
     	distanceLast = distanceTraveled;       
     }
     
