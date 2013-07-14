@@ -6,7 +6,7 @@ var isGrounded: boolean = false;
 var jumpVelocity: Vector3;
 static var distanceTraveled: float;
 
-var timer:float = 2;
+var timer:float = 0.5;
 var previousDistance:float = 0;
 
 function Start () {
@@ -27,13 +27,16 @@ function Update () {
     }
     distanceTraveled = transform.localPosition.z;
     
+    timer -= Time.deltaTime;
+    print(timer);
     if(timer < 0)
     {
-    	if((transform.position.x - previousDistance) < 1 || transform.position.y <= 0)
+    	if((transform.position.z - previousDistance) < 1)
 	    {
 	    	Destroy(gameObject);
 	    }
 	    timer = 2;
+	    previousDistance = transform.position.z;
     }       
 }
 

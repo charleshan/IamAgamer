@@ -58,10 +58,10 @@ function CreateScenario (obstacleType : int, distanceToPlace : int)
 			obstacle.transform.position.z = distanceToPlace+30;
 			break;
 		case 2:
-			//repurpose obstacle to unpassable obstacle
+			//repurpose obstacle to box obstacle
 			obstacle = GenerateObstacle(boxObstacle);
 			obstacle.transform.position.x = Random.Range(-9,9);
-			obstacle.transform.position.y = 5;
+			obstacle.transform.position.y = 2;
 			obstacle.transform.position.z = distanceToPlace+30;
 			break;
 		case 3:
@@ -77,6 +77,8 @@ function CreateScenario (obstacleType : int, distanceToPlace : int)
 			obstacle.transform.position.x = Random.Range(-9,9);
 			obstacle.transform.position.y = 2;
 			obstacle.transform.position.z = distanceToPlace+30;
+			
+			obstacle.transform.rotation.y = 30;
 			break;
 		case 5:
 			//repurpose obstacle to saw obstacle
