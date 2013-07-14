@@ -25,12 +25,11 @@ function Update ()
 	
 	if(Mathf.Floor(travelled%40) == 0 && !stopGeneration)
 	{
+		stopGeneration = true;
 		var type = Random.Range(1,9);
 		//var type = 8;
 		type = Mathf.Floor(type);
 		CreateScenario(type,travelled);
-		
-		stopGeneration = true;
 	}
 	else if(stopGeneration && Mathf.Floor(travelled%40) != 0)
 	{
