@@ -20,7 +20,7 @@ var second: Transform;
 	     {
 	        savedPos += 100;
 	       	//Instantiate(prefab, Vector3(0, 0, savedPos + 100), transform.rotation);
-			first.position = Vector3(0, 0, savedPos + 100);
+			first.position.z = second.position.z + 100;
 			var temp = first;
 	    	first = second;
 	    	second = temp;
