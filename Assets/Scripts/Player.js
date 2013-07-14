@@ -48,6 +48,17 @@ function FixedUpdate()
     rigidbody.AddForce(0, 0, velocity);
 }
 
+function OnTriggerEnter(otherObject: Collider)
+{
+	var contact : String = otherObject.transform.name;
+    
+    if(contact == "PowerUp")
+	{
+		rigidbody.AddRelativeForce(Vector3.left*250);
+		print("Worked");
+	}
+}
+
 function OnCollisionEnter(otherObject: Collision)
 {
     isGrounded = true;
@@ -57,6 +68,11 @@ function OnCollisionEnter(otherObject: Collision)
     if (contact == "Platform" || contact == "Wall") 
 	{            
 		//print (contact);
+	}
+	else if(contact == "PowerUp")
+	{
+		//rigidbody.AddForce(0, 0, -400);
+		//print("Worked");
 	}
 	else
 	{
