@@ -36,7 +36,7 @@ function Update () {
 	    previousDistance = transform.position.z;
     }
     
-    if(playerHealth <= 0 || -11 >= transform.position.x || 11 <= transform.position.x)
+    if(playerHealth <= 0 || -15 >= transform.position.x || 15 <= transform.position.x)
     {
     	Destroy(gameObject);
 	    Application.LoadLevel(2);

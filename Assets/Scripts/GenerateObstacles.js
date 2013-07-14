@@ -15,12 +15,13 @@ var generateFrequency:int = 60;
 var recycleOffset = 80;
 var stopGeneration:boolean = false;
 var count = 0;
+var reductionCount = 0;
 
 function Start () {
 	
 	for(var j = 1; j <= 5; j++)
 	{
-		var type = Random.Range(1,9);
+		var type = Random.Range(1,13);
 		type = Mathf.Floor(type);
 		CreateScenario(type,0,100*j);
 	}
@@ -59,6 +60,13 @@ function Update ()
 			Destroy(firstObs.gameObject);
 		}
 	}
+	
+	if(travelled/250> reductionCount)
+	{
+		generateFrequency += 5;
+		reductionCount++;
+	}
+	
 }
 
 function CreateScenario (obstacleType : int, distanceToPlace : int, distanceAwayToAdd : int)
@@ -67,52 +75,61 @@ function CreateScenario (obstacleType : int, distanceToPlace : int, distanceAway
 	switch(obstacleType)
 	{
 		case 1:
-			//repurpose obstacle to trashcan
+		case 2:
+		case 3:
+			//repurpose obstacle to 2 trashcan
+			obstacle = GenerateObstacle(trashcanObstacle);
+			obstacle.transform.position.x = Random.Range(-9,9);
+			obstacle.transform.position.y = 2;
+			obstacle.transform.position.z = distanceToPlace+distanceAwayToAdd;
+			
 			obstacle = GenerateObstacle(trashcanObstacle);
 			obstacle.transform.position.x = Random.Range(-9,9);
 			obstacle.transform.position.y = 2;
 			obstacle.transform.position.z = distanceToPlace+distanceAwayToAdd;
 			break;
-		case 2:
+		case 4:
+		case 5:
 			//repurpose obstacle to box obstacle
 			obstacle = GenerateObstacle(boxObstacle);
 			obstacle.name = "PowerUp";
-			obstacle.transform.position.x = Random.Range(-9,-3);
+			obstacle.transform.position.x = Random.Range(-9,9);
 			obstacle.transform.position.y = 2;
 			obstacle.transform.position.z = distanceToPlace+distanceAwayToAdd;
 			break;
-		case 3:
+		case 6:
+		case 7:
 			//repurpose obstacle to pipe obstacle
 			obstacle = GenerateObstacle(pipeObstacle);
 			obstacle.transform.position.x = -9;
 			obstacle.transform.position.y = 5;
 			obstacle.transform.position.z = distanceToPlace+distanceAwayToAdd;
 			break;
-		case 4:
+		case 8:
 			obstacle = GenerateObstacle(row1Obstacle);
 			obstacle.transform.position.x = 0;
 			obstacle.transform.position.y = 2;
 			obstacle.transform.position.z = distanceToPlace+distanceAwayToAdd;
 			break;
-		case 5:
+		case 9:
 			obstacle = GenerateObstacle(row2Obstacle);
 			obstacle.transform.position.x = 0;
 			obstacle.transform.position.y = 2;
 			obstacle.transform.position.z = distanceToPlace+distanceAwayToAdd;
 			break;
-		case 6:
+		case 10:
 			obstacle = GenerateObstacle(row3Obstacle);
 			obstacle.transform.position.x = 0;
 			obstacle.transform.position.y = 2;
 			obstacle.transform.position.z = distanceToPlace+distanceAwayToAdd;
 			break;
-		case 7:
+		case 11:
 			obstacle = GenerateObstacle(row4Obstacle);
 			obstacle.transform.position.x = 0;
 			obstacle.transform.position.y = 2;
 			obstacle.transform.position.z = distanceToPlace+distanceAwayToAdd;
 			break;
-		case 8:
+		case 12:
 			obstacle = GenerateObstacle(row5Obstacle);
 			obstacle.transform.position.x = 0;
 			obstacle.transform.position.y = 2;
