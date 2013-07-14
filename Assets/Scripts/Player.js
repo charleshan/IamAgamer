@@ -23,6 +23,9 @@ function Update () {
         isGrounded = false;
     }
     distanceTraveled = transform.localPosition.z;
+
+    if (transform.position.y <= 0)
+            Destroy(gameObject);
 }
 
 function FixedUpdate()
@@ -30,12 +33,25 @@ function FixedUpdate()
     //rigidbody.AddForce(0, 0, velocity);
 }
 
-function OnCollisionEnter()
+function OnCollisionEnter(otherObject: Collider)
 {
     isGrounded = true;
+    /*
+    if (otherObject.tag == "obstacle")
+    {
+         Destroy(gameObject);
+    }*/
 }
 
 function OnCollisionExit()
 {
     isGrounded = false;
 }
+/*
+function OnTriggerEnter(otherObject: Collider)
+{
+    if (otherObject.tag == "obstacle")
+    {
+         Destroy(gameObject);
+    }
+}*/
