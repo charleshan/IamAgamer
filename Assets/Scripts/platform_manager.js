@@ -3,13 +3,14 @@
 
 var prefab: Transform;
 var pos: Vector3;
-var savedPos: float;
+static var savedPos: int;
 var first: Transform;
 var second: Transform;
 var third: Transform;
 var fourth: Transform;
 var fifth: Transform;
 	 
+
 	 function Start () 
 	 {
 		 savedPos = Player.distanceTraveled;
