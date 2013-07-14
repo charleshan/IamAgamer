@@ -1,15 +1,15 @@
 fileFormatVersion: 2
-guid: 8f7f40213f8631249a971dac1f1d5c4c
+guid: c69dc50f9f7d09f43a1e4ca0cda80307
 ModelImporter:
   serializedVersion: 15
   fileIDToRecycleName:
-    100000: trashcan
+    100000: default
     100002: //RootNode
-    400000: trashcan
+    400000: default
     400002: //RootNode
-    2300000: trashcan
-    3300000: trashcan
-    4300000: trashcan
+    2300000: default
+    3300000: default
+    4300000: default
     9500000: //RootNode
   materials:
     importMaterials: 1
