@@ -11,7 +11,7 @@ function Update () {
 }
 
 function OnGUI () {
-        GUI.Label (Rect (300, 10, 100, 20), "Score: " + Player.distanceTraveled);
+    GUI.Label (Rect (300, 10, 100, 20), "Score: " + Mathf.Floor(Player.distanceTraveled));
 
     GUI.Label (Rect (10, 10, textureToDisplay.width/3, textureToDisplay.height/3),
         textureToDisplay);
