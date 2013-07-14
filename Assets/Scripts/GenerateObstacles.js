@@ -8,17 +8,24 @@ public var row2Obstacle:Transform;
 public var row3Obstacle:Transform;
 public var row4Obstacle:Transform;
 public var row5Obstacle:Transform;
-public var distanceAwayToAdd: int = 200;
+public var distanceAwayToAdd: int = 400;
 
 var usedObjectQueue = new Queue();
 var generateFrequency:int = 60;
 var recycleOffset = 80;
 var stopGeneration:boolean = false;
+var count = 0;
 
 function Start () {
-	var type = Random.Range(1,9);
-	type = Mathf.Floor(type);
-	//CreateScenario(type,0);
+	
+	for(var j = 1; j <= 5; j++)
+	{
+		var type = Random.Range(1,9);
+		type = Mathf.Floor(type);
+		CreateScenario(type,0,100*j);
+	}
+	
+	count = 5;
 }
 
 function Update () 
@@ -27,14 +34,16 @@ function Update ()
 	player = GameObject.Find("Player");
 	var travelled = player.GetComponent(Player).distanceTraveled;
 	
-	if(Mathf.Floor(travelled%generateFrequency) == 0 && !stopGeneration)
+	if(count*generateFrequency + 200 < travelled && !stopGeneration)
 	{
 		stopGeneration = true;
 		var type = Random.Range(1,9);
+		//var type  = 2;
 		type = Mathf.Floor(type);
-		CreateScenario(type,travelled);
+		CreateScenario(type,travelled,distanceAwayToAdd);
+		count++;
 	}
-	else if(stopGeneration && Mathf.Floor(travelled%generateFrequency) != 0)
+	else if(stopGeneration)
 	{
 		stopGeneration = false;
 	}
@@ -52,7 +61,7 @@ function Update ()
 	}
 }
 
-function CreateScenario (obstacleType : int, distanceToPlace : int)
+function CreateScenario (obstacleType : int, distanceToPlace : int, distanceAwayToAdd : int)
 {
 	var obstacle:Transform;
 	switch(obstacleType)
@@ -67,7 +76,8 @@ function CreateScenario (obstacleType : int, distanceToPlace : int)
 		case 2:
 			//repurpose obstacle to box obstacle
 			obstacle = GenerateObstacle(boxObstacle);
-			obstacle.transform.position.x = Random.Range(-9,9);
+			obstacle.name = "PowerUp";
+			obstacle.transform.position.x = Random.Range(-9,-3);
 			obstacle.transform.position.y = 2;
 			obstacle.transform.position.z = distanceToPlace+distanceAwayToAdd;
 			break;
