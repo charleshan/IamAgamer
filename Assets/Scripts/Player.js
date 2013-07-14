@@ -6,6 +6,7 @@ var isGrounded: boolean = false;
 var jumpVelocity: Vector3;
 var distanceLast: float = 0;
 static var distanceTraveled: float;
+var playerHealth:int = 10;
 
 var timer:float = 0.5;
 var previousDistance:float = 0;
@@ -16,10 +17,6 @@ function Start () {
 
 function Update () {
     transform.Translate(Input.GetAxis("Vertical") * Time.deltaTime * movementSpeed, 0, 0);
-    /*
-    var amtToMove = velocity * Time.deltaTime;
-    transform.Translate(-Vector3.forward * amtToMove);
-    */
     if (Input.GetButtonDown("Jump") && transform.position.y < 1.1)
     {
         rigidbody.AddForce(jumpVelocity, ForceMode.VelocityChange);
@@ -33,18 +30,17 @@ function Update () {
     {
     	if((transform.position.z - previousDistance) < 1 || transform.position.y < -5)
 	    {
-	    	Destroy(gameObject);
-	    	Application.LoadLevel(2);
+	    	playerHealth--;
 	    }
-	    timer = 2;
+	    timer = 0.5;
 	    previousDistance = transform.position.z;
     }
-    /*
-    if (distanceTraveled > distanceLast + 100) {
-    	velocity += 5;
-    	distanceLast = distanceTraveled;       
-    }*/
     
+    if(playerHealth < 0)
+    {
+    	Destroy(gameObject);
+	    Application.LoadLevel(2);
+    }
 }
 
 function FixedUpdate()
@@ -55,7 +51,18 @@ function FixedUpdate()
 function OnCollisionEnter(otherObject: Collision)
 {
     isGrounded = true;
-
+    
+    var contact : String = otherObject.transform.name;
+    
+    if (contact == "Platform" || contact == "Wall") 
+	{            
+		//print (contact);
+	}
+	else
+	{
+		print(otherObject.relativeVelocity.magnitude);
+	}
+	
 }
 
 function OnCollisionExit(otherObject: Collision)

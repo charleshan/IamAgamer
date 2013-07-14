@@ -25,12 +25,11 @@ function Update ()
 	
 	if(Mathf.Floor(travelled%40) == 0 && !stopGeneration)
 	{
+		stopGeneration = true;
 		var type = Random.Range(1,9);
 		//var type = 8;
 		type = Mathf.Floor(type);
 		CreateScenario(type,travelled);
-		
-		stopGeneration = true;
 	}
 	else if(stopGeneration && Mathf.Floor(travelled%40) != 0)
 	{
@@ -79,13 +78,13 @@ function CreateScenario (obstacleType : int, distanceToPlace : int)
 		case 4:
 			obstacle = GenerateObstacle(row1Obstacle);
 			obstacle.transform.position.x = 0;
-			obstacle.transform.position.y = 0;
+			obstacle.transform.position.y = 2;
 			obstacle.transform.position.z = distanceToPlace+30;
 			break;
 		case 5:
 			obstacle = GenerateObstacle(row2Obstacle);
 			obstacle.transform.position.x = 0;
-			obstacle.transform.position.y = 1;
+			obstacle.transform.position.y = 2;
 			obstacle.transform.position.z = distanceToPlace+30;
 			break;
 		case 6:
@@ -97,13 +96,13 @@ function CreateScenario (obstacleType : int, distanceToPlace : int)
 		case 7:
 			obstacle = GenerateObstacle(row4Obstacle);
 			obstacle.transform.position.x = 0;
-			obstacle.transform.position.y = 1;
+			obstacle.transform.position.y = 2;
 			obstacle.transform.position.z = distanceToPlace+30;
 			break;
 		case 8:
 			obstacle = GenerateObstacle(row5Obstacle);
 			obstacle.transform.position.x = 0;
-			obstacle.transform.position.y = 1;
+			obstacle.transform.position.y = 2;
 			obstacle.transform.position.z = distanceToPlace+30;
 			break;
 		default:

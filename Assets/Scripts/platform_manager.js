@@ -11,7 +11,9 @@ var second: Transform;
 	 {
 		 savedPos = Player.distanceTraveled;
 		 first = Instantiate(prefab, Vector3(0, 0, 0), transform.rotation);
+		 first.name = "Platform";
 		 second = Instantiate(prefab, Vector3(0, 0, 100), transform.rotation);
+		 second.name = "Platform";
 	 }
 
 	 function Update () 
