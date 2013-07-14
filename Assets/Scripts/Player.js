@@ -33,6 +33,7 @@ function Update () {
     	if((transform.position.z - previousDistance) < 1 || transform.position.y < -5)
 	    {
 	    	Destroy(gameObject);
+	    	Application.LoadLevel(2);
 	    }
 	    timer = 2;
 	    previousDistance = transform.position.z;
