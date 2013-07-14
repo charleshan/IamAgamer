@@ -31,7 +31,7 @@ function Update () {
     print(timer);
     if(timer < 0)
     {
-    	if((transform.position.z - previousDistance) < 1)
+    	if((transform.position.z - previousDistance) < 1 || transform.position.y < -5)
 	    {
 	    	Destroy(gameObject);
 	    }
