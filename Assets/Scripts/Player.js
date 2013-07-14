@@ -19,7 +19,7 @@ function Update () {
     var amtToMove = velocity * Time.deltaTime;
     transform.Translate(-Vector3.forward * amtToMove);
 
-    if (Input.GetButtonDown("Jump") && isGrounded)
+    if (Input.GetButtonDown("Jump") && transform.position.y < 1.1)
     {
         rigidbody.AddForce(jumpVelocity, ForceMode.VelocityChange);
 
