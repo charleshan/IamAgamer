@@ -8,6 +8,7 @@ public var row2Obstacle:Transform;
 public var row3Obstacle:Transform;
 public var row4Obstacle:Transform;
 public var row5Obstacle:Transform;
+public var distanceAwayToAdd: int = 80;
 
 var usedObjectQueue = new Queue();
 var recycleOffset = 80;
@@ -59,51 +60,51 @@ function CreateScenario (obstacleType : int, distanceToPlace : int)
 			obstacle = GenerateObstacle(trashcanObstacle);
 			obstacle.transform.position.x = Random.Range(-9,9);
 			obstacle.transform.position.y = 2;
-			obstacle.transform.position.z = distanceToPlace+30;
+			obstacle.transform.position.z = distanceToPlace+distanceAwayToAdd;
 			break;
 		case 2:
 			//repurpose obstacle to box obstacle
 			obstacle = GenerateObstacle(boxObstacle);
 			obstacle.transform.position.x = Random.Range(-9,9);
 			obstacle.transform.position.y = 2;
-			obstacle.transform.position.z = distanceToPlace+30;
+			obstacle.transform.position.z = distanceToPlace+distanceAwayToAdd;
 			break;
 		case 3:
 			//repurpose obstacle to pipe obstacle
 			obstacle = GenerateObstacle(pipeObstacle);
 			obstacle.transform.position.x = -9;
 			obstacle.transform.position.y = 5;
-			obstacle.transform.position.z = distanceToPlace+30;
+			obstacle.transform.position.z = distanceToPlace+distanceAwayToAdd;
 			break;
 		case 4:
 			obstacle = GenerateObstacle(row1Obstacle);
 			obstacle.transform.position.x = 0;
 			obstacle.transform.position.y = 2;
-			obstacle.transform.position.z = distanceToPlace+30;
+			obstacle.transform.position.z = distanceToPlace+distanceAwayToAdd;
 			break;
 		case 5:
 			obstacle = GenerateObstacle(row2Obstacle);
 			obstacle.transform.position.x = 0;
 			obstacle.transform.position.y = 2;
-			obstacle.transform.position.z = distanceToPlace+30;
+			obstacle.transform.position.z = distanceToPlace+distanceAwayToAdd;
 			break;
 		case 6:
 			obstacle = GenerateObstacle(row3Obstacle);
 			obstacle.transform.position.x = 0;
 			obstacle.transform.position.y = 2;
-			obstacle.transform.position.z = distanceToPlace+30;
+			obstacle.transform.position.z = distanceToPlace+distanceAwayToAdd;
 			break;
 		case 7:
 			obstacle = GenerateObstacle(row4Obstacle);
 			obstacle.transform.position.x = 0;
 			obstacle.transform.position.y = 2;
-			obstacle.transform.position.z = distanceToPlace+30;
+			obstacle.transform.position.z = distanceToPlace+distanceAwayToAdd;
 			break;
 		case 8:
 			obstacle = GenerateObstacle(row5Obstacle);
 			obstacle.transform.position.x = 0;
 			obstacle.transform.position.y = 2;
-			obstacle.transform.position.z = distanceToPlace+30;
+			obstacle.transform.position.z = distanceToPlace+distanceAwayToAdd;
 			break;
 		default:
 			print("something broke");
