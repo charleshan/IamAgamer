@@ -11,11 +11,14 @@ public var row5Obstacle:Transform;
 public var distanceAwayToAdd: int = 200;
 
 var usedObjectQueue = new Queue();
+var generateFrequency:int = 60;
 var recycleOffset = 80;
 var stopGeneration:boolean = false;
 
 function Start () {
-	
+	var type = Random.Range(1,9);
+	type = Mathf.Floor(type);
+	//CreateScenario(type,0);
 }
 
 function Update () 
@@ -24,15 +27,14 @@ function Update ()
 	player = GameObject.Find("Player");
 	var travelled = player.GetComponent(Player).distanceTraveled;
 	
-	if(Mathf.Floor(travelled%40) == 0 && !stopGeneration)
+	if(Mathf.Floor(travelled%generateFrequency) == 0 && !stopGeneration)
 	{
 		stopGeneration = true;
 		var type = Random.Range(1,9);
-		//var type = 8;
 		type = Mathf.Floor(type);
 		CreateScenario(type,travelled);
 	}
-	else if(stopGeneration && Mathf.Floor(travelled%40) != 0)
+	else if(stopGeneration && Mathf.Floor(travelled%generateFrequency) != 0)
 	{
 		stopGeneration = false;
 	}
