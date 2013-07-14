@@ -6,7 +6,8 @@ var savedPos: float;
 
 function Start () {
     savedPos = Player.distanceTraveled;
-    Instantiate(prefab, Vector3(0, 0, savedPos + 100), transform.rotation);
+    Instantiate(prefab, Vector3(0, 0, 0), transform.rotation);
+    Instantiate(prefab, Vector3(0, 0, 100), transform.rotation);
 }
 
 function Update () {

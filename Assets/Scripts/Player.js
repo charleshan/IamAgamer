@@ -13,9 +13,13 @@ function Start () {
 function Update () {
     transform.Translate(Input.GetAxis("Vertical") * Time.deltaTime * movementSpeed, 0, 0);
 
+    var amtToMove = velocity * Time.deltaTime;
+    transform.Translate(-Vector3.forward * amtToMove);
+
     if (Input.GetButtonDown("Jump"))
     {
         rigidbody.AddForce(jumpVelocity, ForceMode.VelocityChange);
+
         isGrounded = false;
     }
     distanceTraveled = transform.localPosition.z;
@@ -23,7 +27,7 @@ function Update () {
 
 function FixedUpdate()
 {
-    rigidbody.AddForce(0, 0, velocity);
+    //rigidbody.AddForce(0, 0, velocity);
 }
 
 function OnCollisionEnter()
