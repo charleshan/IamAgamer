@@ -8,7 +8,7 @@ public var row2Obstacle:Transform;
 public var row3Obstacle:Transform;
 public var row4Obstacle:Transform;
 public var row5Obstacle:Transform;
-public var distanceAwayToAdd: int = 80;
+public var distanceAwayToAdd: int = 200;
 
 var usedObjectQueue = new Queue();
 var recycleOffset = 80;
