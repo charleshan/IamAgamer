@@ -1,5 +1,7 @@
 #pragma strict
 
+var textureToDisplay : Texture2D;
+
 public var isQuit = false;
 
 function Start () {
