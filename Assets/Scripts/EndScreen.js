@@ -1,8 +1,10 @@
 #pragma strict
 
+var isScore = false;
 
 function Start () {
-
+	if (isScore)
+		GetComponent(TextMesh).text = "Score: " + Mathf.Floor(Player.distanceTraveled);
 }
 
 function Update () {
@@ -18,6 +20,7 @@ function OnMouseExit () {
 }
 
 function OnMouseDown () {
-	Application.LoadLevel(1);
+	if(!isScore)
+		Application.LoadLevel(1);
 		
 }
