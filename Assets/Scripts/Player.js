@@ -6,6 +6,9 @@ var isGrounded: boolean = false;
 var jumpVelocity: Vector3;
 static var distanceTraveled: float;
 
+var timer:float = 2;
+var previousDistance:float = 0;
+
 function Start () {
     
 }
@@ -16,16 +19,22 @@ function Update () {
     var amtToMove = velocity * Time.deltaTime;
     transform.Translate(-Vector3.forward * amtToMove);
 
-    if (Input.GetButtonDown("Jump"))
+    if (Input.GetButtonDown("Jump") && isGrounded)
     {
         rigidbody.AddForce(jumpVelocity, ForceMode.VelocityChange);
 
         isGrounded = false;
     }
     distanceTraveled = transform.localPosition.z;
-
-    if (transform.position.y <= 0)
-            Destroy(gameObject);
+    
+    if(timer < 0)
+    {
+    	if((transform.position.x - previousDistance) < 1 || transform.position.y <= 0)
+	    {
+	    	Destroy(gameObject);
+	    }
+	    timer = 2;
+    }       
 }
 
 function FixedUpdate()
@@ -33,25 +42,13 @@ function FixedUpdate()
     //rigidbody.AddForce(0, 0, velocity);
 }
 
-function OnCollisionEnter(otherObject: Collider)
+function OnCollisionEnter(otherObject: Collision)
 {
     isGrounded = true;
-    /*
-    if (otherObject.tag == "obstacle")
-    {
-         Destroy(gameObject);
-    }*/
+
 }
 
-function OnCollisionExit()
+function OnCollisionExit(otherObject: Collision)
 {
     isGrounded = false;
 }
-/*
-function OnTriggerEnter(otherObject: Collider)
-{
-    if (otherObject.tag == "obstacle")
-    {
-         Destroy(gameObject);
-    }
-}*/
