@@ -28,7 +28,6 @@ function Update () {
     distanceTraveled = transform.localPosition.z;
     
     timer -= Time.deltaTime;
-    print(timer);
     if(timer < 0)
     {
     	if((transform.position.z - previousDistance) < 1 || transform.position.y < -5)

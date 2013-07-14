@@ -1,10 +1,13 @@
 #pragma strict
 
-public var trashcanObstacle:Transform;
 public var boxObstacle:Transform;
+public var trashcanObstacle:Transform;
 public var pipeObstacle:Transform;
-public var rampObstacle:Transform;
-public var sawObstacle:Transform;
+public var row1Obstacle:Transform;
+public var row2Obstacle:Transform;
+public var row3Obstacle:Transform;
+public var row4Obstacle:Transform;
+public var row5Obstacle:Transform;
 
 var usedObjectQueue = new Queue();
 var recycleOffset = 80;
@@ -20,15 +23,16 @@ function Update ()
 	player = GameObject.Find("Player");
 	var travelled = player.GetComponent(Player).distanceTraveled;
 	
-	if(Mathf.Floor(travelled%20) == 0 && !stopGeneration)
+	if(Mathf.Floor(travelled%40) == 0 && !stopGeneration)
 	{
-		var type = Random.Range(1,6);
+		var type = Random.Range(1,9);
+		//var type = 8;
 		type = Mathf.Floor(type);
-		CreateScenario(type,travelled+30);
+		CreateScenario(type,travelled);
 		
 		stopGeneration = true;
 	}
-	else if(stopGeneration && Mathf.Floor(travelled%20) != 0)
+	else if(stopGeneration && Mathf.Floor(travelled%40) != 0)
 	{
 		stopGeneration = false;
 	}
@@ -39,6 +43,7 @@ function Update ()
 	
 		if(firstObs.position.z + recycleOffset < travelled)
 		{
+			print("Delete" + firstObs.position.z + ":" + recycleOffset + ":" + travelled);
 			usedObjectQueue.Dequeue();
 			Destroy(firstObs.gameObject);
 		}
@@ -72,22 +77,35 @@ function CreateScenario (obstacleType : int, distanceToPlace : int)
 			obstacle.transform.position.z = distanceToPlace+30;
 			break;
 		case 4:
-			//repurpose obstacle to ramp obstacle
-			obstacle = GenerateObstacle(rampObstacle);
-			obstacle.transform.position.x = Random.Range(-9,9);
-			obstacle.transform.position.y = 2;
+			obstacle = GenerateObstacle(row1Obstacle);
+			obstacle.transform.position.x = 0;
+			obstacle.transform.position.y = 0;
 			obstacle.transform.position.z = distanceToPlace+30;
-			
-			obstacle.transform.rotation.y = 30;
 			break;
 		case 5:
-			//repurpose obstacle to saw obstacle
-			obstacle = GenerateObstacle(sawObstacle);
-			obstacle.transform.position.x = Random.Range(-9,9);
+			obstacle = GenerateObstacle(row2Obstacle);
+			obstacle.transform.position.x = 0;
+			obstacle.transform.position.y = 1;
+			obstacle.transform.position.z = distanceToPlace+30;
+			break;
+		case 6:
+			obstacle = GenerateObstacle(row3Obstacle);
+			obstacle.transform.position.x = 0;
 			obstacle.transform.position.y = 2;
 			obstacle.transform.position.z = distanceToPlace+30;
 			break;
-			
+		case 7:
+			obstacle = GenerateObstacle(row4Obstacle);
+			obstacle.transform.position.x = 0;
+			obstacle.transform.position.y = 1;
+			obstacle.transform.position.z = distanceToPlace+30;
+			break;
+		case 8:
+			obstacle = GenerateObstacle(row5Obstacle);
+			obstacle.transform.position.x = 0;
+			obstacle.transform.position.y = 1;
+			obstacle.transform.position.z = distanceToPlace+30;
+			break;
 		default:
 			print("something broke");
 			break;
@@ -98,7 +116,7 @@ function GenerateObstacle (obstacle : Transform)
 {
 
 	var newObs:Transform;
-	newObs = Instantiate (obstacle, Vector3(0, 0, 0), Quaternion.identity);
+	newObs = Instantiate (obstacle, Vector3(0, 0, 0), obstacle.rotation );
 	usedObjectQueue.Enqueue(newObs);
 	return newObs;
 }
