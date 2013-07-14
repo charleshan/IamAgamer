@@ -38,7 +38,7 @@ function Update ()
 	if(count*generateFrequency + 200 < travelled && !stopGeneration)
 	{
 		stopGeneration = true;
-		var type = Random.Range(1,9);
+		var type = Random.Range(1,13);
 		//var type  = 2;
 		type = Mathf.Floor(type);
 		CreateScenario(type,travelled,distanceAwayToAdd);

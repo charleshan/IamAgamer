@@ -15,7 +15,7 @@ var radius = 0.5;
 var power = 10.0;
 var explosion: Transform;
 
-var time:float = 1;
+var timer2:float = 1;
 var needstoQuit:boolean = false;
 
 function Start () {
@@ -43,11 +43,12 @@ function Update () {
 	    previousDistance = transform.position.z;
     }
     
-    if(playerHealth <= 0 || -15 >= transform.position.x || 15 <= transform.position.x)
+    if(playerHealth <= 0 || -11 >= transform.position.x || 11 <= transform.position.x)
     {
     	//Destroy(gameObject);
         var exp = Instantiate(explosion, gameObject.rigidbody.position, Quaternion.identity);
         needstoQuit = true;
+        print("wtf");
         
     }
 
@@ -55,9 +56,9 @@ function Update () {
 
     if(needstoQuit)
     {
-        timer -= Time.deltaTime;
+        timer2 -= Time.deltaTime;
         
-        if(timer < 0)
+        if(timer2 < 0)
         {
             //platform_manager.platform_inint();
 
