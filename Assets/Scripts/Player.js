@@ -5,7 +5,7 @@ var movementSpeed: float = 5;
 var isGrounded: boolean = false;
 var jumpVelocity: Vector3;
 var distanceLast: float = 0;
-static var distanceTraveled: float;
+static var distanceTraveled: float = 0.0;
 var playerHealth:int = 3;
 
 var timer:float = 0.5;
@@ -19,7 +19,7 @@ var timer2:float = 1;
 var needstoQuit:boolean = false;
 
 function Start () {
-    
+    distanceTraveled = 0;
 }
 
 function Update () {
@@ -47,12 +47,8 @@ function Update () {
     {
     	//Destroy(gameObject);
         var exp = Instantiate(explosion, gameObject.rigidbody.position, Quaternion.identity);
-        needstoQuit = true;
-        print("wtf");
-        
+        needstoQuit = true;   
     }
-
-    
 
     if(needstoQuit)
     {
@@ -61,10 +57,11 @@ function Update () {
         if(timer2 < 0)
         {
             //platform_manager.platform_inint();
-
+           /*
             var platform:GameObject;
 	platform = GameObject.Find("Plat");
 	platform.GetComponent(platform_manager).Start();
+    */
 
             Application.LoadLevel(2);
         }    
