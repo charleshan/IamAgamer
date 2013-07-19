@@ -23,7 +23,7 @@ function Start () {
 }
 
 function Update () {
-    transform.Translate(Input.GetAxis("Vertical") * Time.deltaTime * movementSpeed, 0, 0);
+    transform.Translate(Input.GetAxis("Horizontal") * Time.deltaTime * movementSpeed, 0, 0);
     if (Input.GetButtonDown("Jump") && transform.position.y < 1.1)
     {
         rigidbody.AddForce(jumpVelocity, ForceMode.VelocityChange);
